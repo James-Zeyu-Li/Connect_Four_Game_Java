@@ -15,7 +15,14 @@ public interface ConnectFourModel {
    */
   void initializeBoard();
 
-  void makeMove(int column) throws IllegalArgumentException;
+  /**
+   * Select a column to drop the disc at, the disc will be dropped to the lowest non-occupied row.
+   * If column is full, reject the selection
+   *
+   * @param columnNum the column to drop the disc
+   * @throws IllegalArgumentException if column is out of range
+   */
+  void makeMove(int columnNum) throws IllegalArgumentException;
 
   Player getTurn();
 

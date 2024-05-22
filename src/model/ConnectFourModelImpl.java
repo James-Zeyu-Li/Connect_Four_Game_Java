@@ -50,12 +50,36 @@ public class ConnectFourModelImpl implements ConnectFourModel {
   }
 
   /**
-   * @param column
-   * @throws IllegalArgumentException
+   * Select a column to drop the disc at, the disc will be dropped to the lowest non-occupied row.
+   * If column is full, reject the selection
+   *
+   * @param columnNum the column to drop the disc
+   * @throws IllegalArgumentException if column is out of range
    */
   @Override
-  public void makeMove(int column) throws IllegalArgumentException {
+  public void makeMove(int columnNum) throws IllegalArgumentException {
+    if (columnNum < 0 || columnNum >= columns) {
+      throw new IllegalArgumentException("The column is out of boundary");
+    }
 
+    if (gameOver) {
+      throw new IllegalArgumentException("The game is already over");
+    }
+
+    if (board[0][columnNum] != null) {
+      throw new IllegalArgumentException("The column is full");
+    }
+
+    for (int i = rows - 1; i >= 0; i--) {
+      if (board[i][columnNum] == null) {
+        board[i][columnNum] = getTurn();
+        lastRow = i;
+        lastColumn = columnNum;
+        movesCount++;
+        gameOver = isGameOver();
+        return;
+      }
+    }
   }
 
   /**

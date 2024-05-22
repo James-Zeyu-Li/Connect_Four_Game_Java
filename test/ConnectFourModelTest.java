@@ -1,4 +1,8 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import model.ConnectFourModel;
 import model.ConnectFourModelImpl;
@@ -37,4 +41,14 @@ public class ConnectFourModelTest {
     }
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testMakeNegativeMove() {
+    model.makeMove(-1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testMakeMoveOutOfBounds() {
+    model.makeMove(7);
+  }
+  
 }

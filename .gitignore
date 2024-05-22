@@ -1,1 +1,7 @@
 .idea
+/out/
+target/
+build/
+.idea/
+*.iml
+*.class

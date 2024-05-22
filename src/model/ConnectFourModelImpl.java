@@ -37,10 +37,16 @@ public class ConnectFourModelImpl implements ConnectFourModel {
 
   /**
    * Initializes the game board with a specified number of rows and columns.
+   * Loop through each cell and make it null.
    */
   @Override
   public void initializeBoard() {
-
+    this.board = new Player[rows][columns];
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+        board[i][j] = null;
+      }
+    }
   }
 
   /**

@@ -55,6 +55,7 @@ public class ConnectFourModelImpl implements ConnectFourModel {
    *
    * @param columnNum the column to drop the disc
    * @throws IllegalArgumentException if column is out of range
+   * @throws IllegalStateException    if the game is already over
    */
   @Override
   public void makeMove(int columnNum) throws IllegalArgumentException {
@@ -63,7 +64,7 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     }
 
     if (gameOver) {
-      throw new IllegalArgumentException("The game is already over");
+      throw new IllegalStateException("The game is already over");
     }
 
     if (board[0][columnNum] != null) {
@@ -95,13 +96,33 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     return movesCount % 2 == 0 ? Player.RED : Player.YELLOW;
   }
 
+  private boolean checkBoardFull(int row, int colum) {
+    
+  }
+
+  private boolean checkHorizontalWin(int row, int column) {
+
+  }
+
+  private boolean checkVerticalWin(int row, int column) {
+
+  }
+
+  private boolean checkDiagonalWin(int row, int colum) {
+
+  }
+
   /**
-   * @return
+   * Checks if the game is over. The game is over when either the board is full, or
+   * one player has won vertically, diagonally or horizontally.
+   *
+   * @return true if game is over, false otherwise.
    */
   @Override
   public boolean isGameOver() {
     return false;
   }
+
 
   /**
    * @return

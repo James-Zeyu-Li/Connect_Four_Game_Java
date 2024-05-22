@@ -123,14 +123,33 @@ public class ConnectFourModelImpl implements ConnectFourModel {
 
 
   /**
-   * Check
+   * When there is a player with more than or equal to 4 consecutive vertical count, a player win.
    *
-   * @param row
-   * @param column
-   * @return
+   * @param row    The row number
+   * @param column The column number
+   * @return Return True if the game is over, false otherwise.
    */
   private boolean checkHorizontalWin(int row, int column) {
+    Player currentPlayer = board[row][column];
+    if (currentPlayer == null) {
+      return false;
+    }
 
+    int count = 1;
+    for (int j = column + 1; j < columns && board[row][j] == currentPlayer; j++) {
+      count++;
+    }
+
+    for (int j = column - 1; j >= 0 && board[row][j] == currentPlayer; j--) {
+      count++;
+    }
+    
+    if (count >= 4) {
+      winner = currentPlayer;
+      return true;
+    }
+
+    return false;
 
   }
 

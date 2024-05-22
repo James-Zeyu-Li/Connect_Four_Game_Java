@@ -83,11 +83,16 @@ public class ConnectFourModelImpl implements ConnectFourModel {
   }
 
   /**
-   * @return
+   * Retrieves the player whose turn it is to make a move.
+   *
+   * @return the player whose turn it is
    */
   @Override
   public Player getTurn() {
-    return null;
+    if (gameOver) {
+      return null;
+    }
+    return movesCount % 2 == 0 ? Player.RED : Player.YELLOW;
   }
 
   /**

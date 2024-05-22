@@ -96,9 +96,6 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     return movesCount % 2 == 0 ? Player.RED : Player.YELLOW;
   }
 
-  private boolean checkBoardFull(int row, int colum) {
-    
-  }
 
   private boolean checkHorizontalWin(int row, int column) {
 
@@ -111,6 +108,22 @@ public class ConnectFourModelImpl implements ConnectFourModel {
   private boolean checkDiagonalWin(int row, int colum) {
 
   }
+
+  /**
+   * Checks if the game is over. The game is over when either the board is full
+   *
+   * @return true if the game is over, false otherwise
+   */
+  private boolean isBoardFull() {
+    for (int j = 0; j < columns; j++) {
+      if (board[0][j] == null) {
+        return false;
+      }
+    }
+    winner = null;
+    return true;
+  }
+
 
   /**
    * Checks if the game is over. The game is over when either the board is full, or

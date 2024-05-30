@@ -21,6 +21,7 @@ public class ConnectFourModelImpl implements ConnectFourModel {
    * @param rows    the number of rows in the game board
    * @param columns the number of columns in the game board
    */
+
   public ConnectFourModelImpl(int rows, int columns) throws IllegalArgumentException {
     if (rows < 4 || columns < 4) {
       throw new IllegalArgumentException("The number of rows and columns must be at least 4.");
@@ -143,25 +144,88 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     for (int j = column - 1; j >= 0 && board[row][j] == currentPlayer; j--) {
       count++;
     }
-    
+
     if (count >= 4) {
       winner = currentPlayer;
       return true;
     }
 
     return false;
-
   }
 
   /**
-   * Check
+   * Check if there is a consecutive count of one player's color up to 4,
+   * from bottom right to top left.
    *
-   * @param row
-   * @param colum
-   * @return
+   * @param row    the row number
+   * @param column the column number
+   * @return True when the game is over, false otherwise.
    */
-  private boolean checkDiagonalWin(int row, int colum) {
+  private boolean checkWinTopLeftBottomRight(int row, int column) {
+    Player currentPlayer = board[row][column];
+    if (currentPlayer == null) {
+      return false;
+    }
 
+    int count1 = 1;
+    for (int i = 1; row - i >= 0 && column - i >= 0; i++) {
+      if (board[row - i][column - i] == currentPlayer) {
+        count1++;
+      } else {
+        break;
+      }
+    }
+
+    for (int i = 1; row + i < rows && column + i < columns; i++) {
+      if (board[row + i][column + i] == currentPlayer) {
+        count1++;
+      } else {
+        break;
+      }
+    }
+
+    if (count1 >= 4) {
+      winner = currentPlayer;
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Check if there is a consecutive count of one player's color up to 4,
+   * from bottom left to upper right.
+   *
+   * @param row    the row number
+   * @param column the column number
+   * @return True when the game is over, false otherwise.
+   */
+  private boolean checkWinTopRightBottomLeft(int row, int column) {
+    Player currentPlayer = board[row][column];
+    if (currentPlayer == null) {
+      return false;
+    }
+
+    int count2 = 1;
+    for (int i = 1; row - i >= 0 && column + i < columns; i++) {
+      if (board[row - i][column + i] == currentPlayer) {
+        count2++;
+      } else {
+        break;
+      }
+    }
+
+    for (int i = 1; row + i < rows && column - i >= 0; i++) {
+      if (board[row + i][column - i] == currentPlayer) {
+        count2++;
+      } else {
+        break;
+      }
+    }
+    if (count2 >= 4) {
+      winner = currentPlayer;
+      return true;
+    }
+    return false;
   }
 
   /**

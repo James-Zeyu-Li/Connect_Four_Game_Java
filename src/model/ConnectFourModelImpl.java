@@ -316,7 +316,12 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     return copy;
   }
 
-
+  /**
+   * Returns a string representation of the game board.
+   * Keep for testing
+   *
+   * @return a string representation of the game board
+   */
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();

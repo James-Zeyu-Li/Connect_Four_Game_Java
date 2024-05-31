@@ -1,7 +1,8 @@
 package model;
 
 /**
- * Enum type for gamers in connect four game,
+ * Enumerated type representing the possible states of a cell in the game board.
+ * Each cell can be occupied by a disc belonging to either player, or be empty.
  */
 public enum Player {
   RED("R"), YELLOW("Y");

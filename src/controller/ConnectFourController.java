@@ -1,6 +1,12 @@
 package controller;
+
 import model.ConnectFourModel;
 
+/**
+ * Represents a Controller for the Connect Four game.
+ * The controller is responsible for handling user
+ * moves by executing them using the model and conveying move outcomes to the user.
+ */
 public interface ConnectFourController {
 
   /**

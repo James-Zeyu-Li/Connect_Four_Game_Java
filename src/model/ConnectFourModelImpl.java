@@ -299,10 +299,41 @@ public class ConnectFourModelImpl implements ConnectFourModel {
   }
 
   /**
-   * @return
+   * Retrieves the current state of the game board. This method is useful
+   * for the View component to display the current game status.
+   *
+   * @return a 2D array representing the current state of the board
    */
   @Override
   public Player[][] getBoardState() {
-    return new Player[0][];
+    Player[][] copy = new Player[rows][columns];
+    for (int i = 0; i < rows; i++) {
+      System.arraycopy(board[i], 0, copy[i], 0, columns);
+    }
+    return copy;
+  }
+
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    Player[][] boardCopy = getBoardState();
+
+    sb.append(" |");
+    for (int col = 0; col < columns; col++) {
+      sb.append(" ").append(col + 1).append(" |");
+    }
+    sb.append("\n");
+
+    for (int row = 0; row < rows; row++) {
+      sb.append("|");
+      for (int col = 0; col < columns; col++) {
+        String cellRepresentation = boardCopy[row][col] == null ? "   |" : " " + boardCopy[row][col].toString().charAt(0) + " |";
+        sb.append(cellRepresentation);
+      }
+      sb.append("\n");
+      sb.append(" ").append("---+".repeat(columns)).append("\n");
+    }
+    return sb.toString();
   }
 }

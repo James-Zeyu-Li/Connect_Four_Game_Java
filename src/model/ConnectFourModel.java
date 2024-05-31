@@ -24,14 +24,44 @@ public interface ConnectFourModel {
    */
   void makeMove(int columnNum) throws IllegalArgumentException;
 
+
+  /**
+   * Retrieves the player whose turn it is to make a move.
+   *
+   * @return the player whose turn it is
+   */
   Player getTurn();
 
+
+  /**
+   * Checks if the game is over. The game is over when either the board is full, or
+   * one player has won vertically, diagonally or horizontally.
+   *
+   * @return true if game is over, false otherwise.
+   */
   boolean isGameOver();
 
+
+  /**
+   * Retrieves the winner of the game, or null if there is no winner. If the game is not
+   * over, returns null
+   *
+   * @return the winner, or null if there is no winner
+   */
   Player getWinner();
 
+
+  /**
+   * Reset all the cells in the board for a new game.
+   */
   void resetBoard();
 
+  /**
+   * Retrieves the current state of the game board. This method is useful
+   * for the View component to display the current game status.
+   *
+   * @return a 2D array representing the current state of the board
+   */
   Player[][] getBoardState();
 
 }

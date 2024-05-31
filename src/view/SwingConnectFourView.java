@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import model.Player;
 
 /**
@@ -122,7 +123,20 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
    */
   @Override
   public void updateBoard(Player[][] board) {
-
+    SwingUtilities.invokeLater(() -> {
+      for (int row = 0; row < rows; row++) {
+        for (int col = 0; col < columns; col++) {
+          JLabel label = gridLabels[row][col];
+          if (board[row][col] == Player.RED) {
+            label.setBackground(Color.RED);
+          } else if (board[row][col] == Player.YELLOW) {
+            label.setBackground(Color.YELLOW);
+          } else {
+            label.setBackground(Color.WHITE);
+          }
+        }
+      }
+    });
   }
 
   /**
@@ -137,13 +151,13 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
   }
 
   /**
-   * Displays the current game state.
+   * Displays the current game state. The game state is displayed by updating the game board.
    *
    * @param boardState the current game state
    */
   @Override
   public void displayGameState(Player[][] boardState) {
-
+    updateBoard(boardState);
   }
 
   /**
@@ -158,12 +172,25 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
   }
 
   /**
-   * Displays the game over message.
+   * Displays the game over message. The message is displayed in a dialog box.
+   * The message includes the winner of the game or a draw game message.
+   * The user is prompted to play again or exit the game.
+   * If the user chooses to play again, the controller's resetGame method is called.
+   * If the user chooses to exit the game, the window is closed.
    *
    * @param winner the winner of the game
    */
   @Override
   public void displayGameOver(Player winner) {
-
+    String message = winner != null ? winner + " wins!" : "Draw Game";
+    int result = JOptionPane.showConfirmDialog(this, message + "\nPlay again?", "Game Over",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    if (result == JOptionPane.YES_OPTION) {
+      controller.resetGame();
+      statusLabel.setText("Game restarted. Red's turn.");
+    } else {
+      dispose();
+    }
   }
 }
+

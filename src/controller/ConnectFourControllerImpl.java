@@ -37,18 +37,40 @@ public class ConnectFourControllerImpl implements ConnectFourController {
    */
   @Override
   public void playGame(ConnectFourModel m) throws IllegalArgumentException {
+    if (m == null) {
+      throw new IllegalArgumentException("Model can't be null");
+    }
 
+    model.initializeBoard();
+    view.displayGameState(model.getBoardState());
+    view.displayPlayerTurn(getStatusMessage());
   }
 
   /**
    * Make a move in the Connect Four game. The move is executed using the model.
-   * The move is made in the column specified by the user.
+   * If the game is over, an IllegalStateException is thrown. If the move is invalid,
+   * an IllegalArgumentException is thrown.
    *
    * @param column the column in which to place the disc
    */
   @Override
-  public void makeMove(int column) {
+  public void makeMove(int column) throws IllegalArgumentException {
+    if (model.isGameOver()) {
+      throw new IllegalStateException("The game is over");
+    }
 
+    try {
+      model.makeMove(column);
+
+      view.displayGameState(model.getBoardState());
+      if (model.isGameOver()) {
+        view.displayGameOver(model.getWinner());
+      } else {
+        view.displayPlayerTurn(getStatusMessage());
+      }
+    } catch (IllegalArgumentException e) {
+      view.displayError(e.getMessage());
+    }
   }
 
   /**

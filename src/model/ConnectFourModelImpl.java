@@ -272,19 +272,30 @@ public class ConnectFourModelImpl implements ConnectFourModel {
 
 
   /**
-   * @return
+   * Retrieves the winner of the game, or null if there is no winner. If the game is not
+   * over, returns null
+   *
+   * @return the winner, or null if there is no winner
    */
   @Override
   public Player getWinner() {
+    if (isGameOver()) {
+      return winner;
+    }
     return null;
   }
 
   /**
-   *
+   * Reset all the cells in the board for a new game.
    */
   @Override
   public void resetBoard() {
-
+    initializeBoard();
+    this.movesCount = 0;
+    this.gameOver = false;
+    this.winner = null;
+    lastRow = -1;
+    lastColumn = -1;
   }
 
   /**

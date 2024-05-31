@@ -252,6 +252,21 @@ public class ConnectFourModelImpl implements ConnectFourModel {
    */
   @Override
   public boolean isGameOver() {
+    if (lastRow != -1 && lastColumn != -1) {
+      if (checkVerticalWin(lastRow, lastColumn)
+          || checkHorizontalWin(lastRow, lastColumn)
+          || checkWinTopLeftBottomRight(lastRow, lastColumn)
+          || checkWinTopRightBottomLeft(lastRow, lastColumn)) {
+        gameOver = true;
+        return true;
+      }
+    }
+
+    if (isBoardFull()) {
+      gameOver = true;
+      return true;
+    }
+
     return false;
   }
 

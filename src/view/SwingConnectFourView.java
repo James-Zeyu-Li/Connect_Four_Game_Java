@@ -3,14 +3,12 @@ package view;
 import controller.ConnectFourController;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.JButton;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import model.Player;
 
 /**
@@ -18,8 +16,8 @@ import model.Player;
  * functionalities required to display the game state and messages to the user.
  */
 public class SwingConnectFourView extends JFrame implements ConnectFourView {
-  private final int rows;
-  private final int columns;
+  private final int rows = 6;
+  private final int columns = 7;
   private final JLabel[][] gridLabels = new JLabel[rows][columns];
   private final JPanel boardPanel = new JPanel();
   private final JLabel statusLabel = new JLabel("Welcome to Connect 4", SwingConstants.CENTER);
@@ -42,7 +40,17 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
    * The status label displays the current player's turn and game status.
    */
   private void initializeView() {
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setLayout(new BorderLayout());
 
+    // Initialize the board panel
+    add(statusLabel, BorderLayout.NORTH);
+    boardPanel.setLayout(new GridLayout(rows, columns));
+    initializeBoard();
+    add(boardPanel, BorderLayout.CENTER);
+
+    setSize(850, 700);
+    setVisible(true);
   }
 
   /**
@@ -55,9 +63,25 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
    * When a cell is clicked, the controller's makeMove method is called with the column index.
    */
   private void initializeBoard() {
+    boardPanel.removeAll();
+    boardPanel.setLayout(new GridLayout(rows, columns));
 
+    for (int row = 0; row < rows; row++) {
+      for (int col = 0; col < columns; col++) {
+        JLabel cellLabel = new JLabel("", SwingConstants.CENTER);
+        cellLabel.setOpaque(true);
+        cellLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        cellLabel.setBackground(Color.WHITE);
+
+        final int column = col;
+
+        boardPanel.add(cellLabel);
+        gridLabels[row][col] = cellLabel;
+      }
+    }
+    boardPanel.revalidate();
+    boardPanel.repaint();
   }
-
 
 
   /**
@@ -82,7 +106,7 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
    */
   @Override
   public void updateBoard(Player[][] board) {
-   
+
   }
 
   /**

@@ -1,7 +1,14 @@
 package controller;
 
 import model.ConnectFourModel;
+import model.Player;
 import view.ConnectFourView;
+
+/**
+ * Represents a Controller for the Connect Four game.
+ * The controller is responsible for handling user
+ * moves by executing them using the model and conveying move outcomes to the user.
+ */
 
 public class ConnectFourControllerImpl implements ConnectFourController {
   private final ConnectFourModel model;
@@ -32,7 +39,7 @@ public class ConnectFourControllerImpl implements ConnectFourController {
    * is over, the playGame method ends.
    * The game is played by making moves in the Connect Four game.
    *
-   * @param m
+   * @param m a non-null Connect Four Model
    * @throws IllegalArgumentException if the model is null
    */
   @Override
@@ -80,7 +87,9 @@ public class ConnectFourControllerImpl implements ConnectFourController {
    */
   @Override
   public void resetGame() {
-
+    model.resetBoard();
+    view.displayGameState(model.getBoardState());
+    view.displayPlayerTurn(getStatusMessage());
   }
 
   /**
@@ -92,6 +101,11 @@ public class ConnectFourControllerImpl implements ConnectFourController {
    */
   @Override
   public String getStatusMessage() {
-    return null;
+    if (model.isGameOver()) {
+      Player winner = model.getWinner();
+      return winner != null ? winner + " wins!" : "Draw Game";
+    } else {
+      return model.getTurn() + " Player's turn";
+    }
   }
 }

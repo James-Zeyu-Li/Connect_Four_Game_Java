@@ -20,9 +20,9 @@ import model.Player;
  * functionalities required to display the game state and messages to the user.
  */
 public class SwingConnectFourView extends JFrame implements ConnectFourView {
-  private final int rows = 6;
-  private final int columns = 7;
-  private final JLabel[][] gridLabels = new JLabel[rows][columns];
+  private final int rows;
+  private final int columns;
+  private final JLabel[][] gridLabels;
   private final JPanel boardPanel = new JPanel();
   private final JLabel statusLabel = new JLabel("Welcome to Connect 4", SwingConstants.CENTER);
   private ConnectFourController controller;
@@ -31,10 +31,15 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
    * Constructs a new SwingConnectFourView object with the specified output destination. The view
    * displays the game board and status messages to the user.
    *
-   * @param title the title of the window
+   * @param title   the title of the window
+   * @param rows    the number of rows in the game board
+   * @param columns the number of columns in the game
    */
-  public SwingConnectFourView(String title) {
+  public SwingConnectFourView(String title, int rows, int columns) {
     super(title);
+    this.rows = rows;
+    this.columns = columns;
+    this.gridLabels = new JLabel[rows][columns];
     initializeView();
   }
 
@@ -91,7 +96,12 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
         cellLabel.setBackground(Color.WHITE);
 
         final int column = col;
-
+        cellLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+          @Override
+          public void mousePressed(java.awt.event.MouseEvent evt) {
+            controller.makeMove(column);
+          }
+        });
         boardPanel.add(cellLabel);
         gridLabels[row][col] = cellLabel;
       }

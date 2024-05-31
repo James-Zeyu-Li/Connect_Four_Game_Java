@@ -1,4 +1,8 @@
-import javax.swing.SwingUtilities;
+import controller.ConnectFourController;
+import controller.ConnectFourControllerImpl;
+import model.ConnectFourModel;
+import model.ConnectFourModelImpl;
+import view.ConnectFourView;
 import view.SwingConnectFourView;
 
 /**
@@ -8,8 +12,9 @@ import view.SwingConnectFourView;
  */
 public class Main {
   public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-      new SwingConnectFourView("Connect Four");
-    });
+    ConnectFourModel model = new ConnectFourModelImpl(6, 7);
+    ConnectFourView view = new SwingConnectFourView("Connect 4");
+    ConnectFourController controller = new ConnectFourControllerImpl(view, model);
+    controller.playGame(model);
   }
 }

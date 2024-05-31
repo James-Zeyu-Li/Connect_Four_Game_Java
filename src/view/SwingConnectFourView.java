@@ -193,7 +193,8 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
   @Override
   public void displayGameOver(Player winner) {
     String message = winner != null ? winner + " wins!" : "Draw Game";
-    int result = JOptionPane.showConfirmDialog(this, message + "\nPlay again?", "Game Over",
+    int result = JOptionPane.showConfirmDialog(
+        this, message + "\nPlay again?", "Game Over",
         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     if (result == JOptionPane.YES_OPTION) {
       controller.resetGame();

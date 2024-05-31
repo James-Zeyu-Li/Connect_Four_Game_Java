@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import model.Player;
@@ -125,13 +126,14 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
   }
 
   /**
-   * Displays the message indicating the current player's turn.
+   * Displays the current player's turn.
+   * The message is displayed in the center of the status label.
    *
    * @param message the message to display
    */
   @Override
   public void displayPlayerTurn(String message) {
-
+    statusLabel.setText(message);
   }
 
   /**
@@ -145,13 +147,14 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
   }
 
   /**
-   * Displays an error message to the user.
+   * Displays an error message to the user. The error message is displayed in a dialog box.
    *
    * @param message the error message to display
    */
   @Override
   public void displayError(String message) {
-
+    JOptionPane.showMessageDialog(
+        this, message, "Error", JOptionPane.ERROR_MESSAGE);
   }
 
   /**

@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import model.ConnectFourModel;
 import model.ConnectFourModelImpl;
-import model.enums.Player;
+import model.Player;
 import org.junit.Before;
 import org.junit.Test;
 

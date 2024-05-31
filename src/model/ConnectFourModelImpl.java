@@ -1,7 +1,5 @@
 package model;
 
-import model.enums.Player;
-
 /**
  * Class for the Connect Four game model.
  */
@@ -94,7 +92,12 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     if (gameOver) {
       return null;
     }
-    return movesCount % 2 == 0 ? Player.RED : Player.YELLOW;
+
+    if (movesCount % 2 == 0) {
+      return Player.RED;
+    } else {
+      return Player.YELLOW;
+    }
   }
 
 
@@ -328,7 +331,8 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     for (int row = 0; row < rows; row++) {
       sb.append("|");
       for (int col = 0; col < columns; col++) {
-        String cellRepresentation = boardCopy[row][col] == null ? "   |" : " " + boardCopy[row][col].toString().charAt(0) + " |";
+        String cellRepresentation = boardCopy[row][col] == null ? "   |" :
+            " " + boardCopy[row][col].toString().charAt(0) + " |";
         sb.append(cellRepresentation);
       }
       sb.append("\n");

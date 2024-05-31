@@ -1,4 +1,4 @@
-package model.enums;
+package model;
 
 /**
  * Enum type for gamers in connect four game,

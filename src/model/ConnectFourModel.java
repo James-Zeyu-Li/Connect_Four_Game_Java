@@ -1,7 +1,5 @@
 package model;
 
-import model.enums.Player;
-
 /**
  * Interface for the Connect Four Game model component in the MVC architecture.
  * This interface defines the core functionalities for the Connect Four game model.

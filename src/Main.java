@@ -12,8 +12,19 @@ import view.SwingConnectFourView;
  */
 public class Main {
   public static void main(String[] args) {
-    ConnectFourModel model = new ConnectFourModelImpl(6, 7);
-    ConnectFourView view = new SwingConnectFourView("Connect 4");
+    int rows = 6;
+    int columns = 7;
+    if (args.length >= 2) {
+      try {
+        rows = Integer.parseInt(args[0]);
+        columns = Integer.parseInt(args[1]);
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid arguments, using default 6 rows and 7 columns.");
+      }
+    }
+
+    ConnectFourModel model = new ConnectFourModelImpl(rows, columns);
+    ConnectFourView view = new SwingConnectFourView("Connect 4", rows, columns);
     ConnectFourController controller = new ConnectFourControllerImpl(view, model);
     controller.playGame(model);
   }

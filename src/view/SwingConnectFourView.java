@@ -3,8 +3,10 @@ package view;
 import controller.ConnectFourController;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -48,6 +50,19 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
     boardPanel.setLayout(new GridLayout(rows, columns));
     initializeBoard();
     add(boardPanel, BorderLayout.CENTER);
+
+    // Initialize the reset and exit buttons
+    JPanel controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    JButton resetButton = new JButton("Reset Game");
+    resetButton.addActionListener(e -> {
+      controller.resetGame();
+      statusLabel.setText("Game restarted. Red's turn.");
+    });
+    JButton exitButton = new JButton("Exit Game");
+    exitButton.addActionListener(e -> System.exit(0));
+    controlPanel.add(resetButton);
+    controlPanel.add(exitButton);
+    add(controlPanel, BorderLayout.SOUTH);
 
     setSize(850, 700);
     setVisible(true);

@@ -59,7 +59,7 @@ public class ConnectFourModelImpl implements ConnectFourModel {
   @Override
   public void makeMove(int columnNum) throws IllegalArgumentException {
     if (columnNum < 0 || columnNum >= columns) {
-      throw new IllegalArgumentException("The column is out of boundary");
+      throw new IllegalArgumentException("Column " + columnNum + " is out of boundary. Valid columns are between 0 and " + (columns - 1));
     }
 
     if (gameOver) {
@@ -67,7 +67,7 @@ public class ConnectFourModelImpl implements ConnectFourModel {
     }
 
     if (board[0][columnNum] != null) {
-      throw new IllegalArgumentException("The column is full");
+      throw new IllegalArgumentException("The column " + columnNum + " is full");
     }
 
     for (int i = rows - 1; i >= 0; i--) {

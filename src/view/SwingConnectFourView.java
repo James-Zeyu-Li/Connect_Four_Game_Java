@@ -72,6 +72,7 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
     add(controlPanel, BorderLayout.SOUTH);
 
     setSize(850, 700);
+    setLocationRelativeTo(null);
     setVisible(true);
   }
 
@@ -204,4 +205,3 @@ public class SwingConnectFourView extends JFrame implements ConnectFourView {
     }
   }
 }
-

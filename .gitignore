@@ -1,7 +1,10 @@
-.idea
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Output directories
 /out/
 target/
 build/
-.idea/
-*.iml
-*.class

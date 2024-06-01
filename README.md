@@ -21,25 +21,22 @@ The objective of the game is to be the first to form a horizontal, vertical, or 
 ## Installation
 
 1. Clone the repository to your local machine:
-
-```
+```sh
 git clone https://github.com/James-Zeyu-Li/Connect_Four_Game_Java.git
 ```
-
 2. Open the project in your preferred Java IDE (e.g., IntelliJ IDEA).
-
 3. Build the project to ensure all dependencies are resolved.
 
 
 ## Running the Game
 
-1. Navigate to the `ConnectFourControllerImpl` class and run the `main` method, or you can build and run the JAR file.
+1. Navigate to the `Connect_Four_Game_Java/src/` class and run the `main` file.
 
-2. Alternatively, you can build the JAR file and run it from the command line:
+2. Alternatively, download and run the .jar file from the command line:
 
-   Copy code
-
-   `java -jar ConnectFourGame.jar`
+```sh
+java -jar ConnectFourGame.jar
+```
 
 
 ## How to Play
@@ -53,19 +50,31 @@ git clone https://github.com/James-Zeyu-Li/Connect_Four_Game_Java.git
 
 ## Project Structure
 
-- `model`: Contains the game logic and state management.
-
-    - `ConnectFourModel.java`: Interface defining the game model.
-    - `ConnectFourModelImpl.java`: Implementation of the game model.
-    - `Player.java`: Enum defining the players (RED and YELLOW).
-- `view`: Contains the GUI components.
-
-    - `ConnectFourView.java`: Interface defining the view.
-    - `SwingConnectFourView.java`: Swing-based implementation of the view.
-- `controller`: Contains the game controller.
-
-    - `ConnectFourController.java`: Interface defining the controller.
-    - `ConnectFourControllerImpl.java`: Implementation of the game controller.
+```text
+Connect_four_game_Java/
+│
+├── src/
+├── ├──Main.java
+│   ├── controller/
+│   │   ├── ConnectFourController.java
+│   │   └── ConnectFourControllerImpl.java
+│   ├── META-INF/
+│   │   └── MANIFEST.MF
+│   ├── model/
+│   │   ├── ConnectFourModel.java
+│   │   ├── ConnectFourModelImpl.java
+│   │   └── Player.java
+│   ├── view/
+│   │   ├── ConnectFourView.java
+│   │   └── SwingConnectFourView.java
+├── test/
+│   ├── ConnectFourControllerTest.java
+│   └── ConnectFourModelTest.java
+├── .gitattributes
+├── .gitignore
+├── Connect_four_game_Java.jar
+└── README.md
+```
 
 ## Contributing
 

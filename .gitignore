@@ -8,3 +8,16 @@
 /out/
 target/
 build/
+
+# Virtual machine crash logs
+hs_err_pid*
+
+# macOS specific files
+.DS_Store
+
+# OS-specific files
+Thumbs.db
+
+# Other files
+*.swp
+*~

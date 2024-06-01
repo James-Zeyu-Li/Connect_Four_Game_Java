@@ -1,9 +1,11 @@
 # Connect_4_game_Java
+
 ## Overview
 
-Connect 4 is a two-player connection game in which the players take turns dropping 
-colored discs into a vertically suspended grid. 
+Connect 4 is a two-player connection game in which the players take turns dropping colored discs into a vertically suspended grid. 
 The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four discs.
+
+This project is a practice exercise for learning Java and the MVC (Model-View-Controller) design pattern.
 
 ## Features
 
@@ -21,9 +23,9 @@ The objective of the game is to be the first to form a horizontal, vertical, or 
 ## Installation
 
 1. Clone the repository to your local machine:
-```sh
-git clone https://github.com/James-Zeyu-Li/Connect_Four_Game_Java.git
-```
+   ```sh
+   git clone https://github.com/James-Zeyu-Li/Connect_Four_Game_Java.git
+    ``` 
 2. Open the project in your preferred Java IDE (e.g., IntelliJ IDEA).
 3. Build the project to ensure all dependencies are resolved.
 
@@ -34,9 +36,9 @@ git clone https://github.com/James-Zeyu-Li/Connect_Four_Game_Java.git
 
 2. Alternatively, download and run the .jar file from the command line:
 
-```sh
-java -jar ConnectFourGame.jar
-```
+    ```sh
+    java -jar ConnectFourGame.jar
+    ```
 
 
 ## How to Play
@@ -76,18 +78,12 @@ Connect_four_game_Java/
 └── README.md
 ```
 
-## Contributing
+## Summary of Changes:
+- Fixed some minor formatting issues.
+- Ensured consistency in file paths and descriptions.
 
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Commit your changes.
-4. Push your branch to your forked repository.
-5. Create a pull request with a description of your changes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-## Acknowledgments
-
-- Thanks to all the contributors and the open-source community for their support and contributions.
+## Future Plan
+- Customizable Settings: Allow players to customize game settings, such as board size and color schemes.
+- Save/Load Game: Add functionality to save the game state and load it later.
+- AI Opponent: Add a single-player mode with an AI opponent of varying difficulty levels.
+- Multigame app: Upgrade from a Connect Four app into a Multigame App which user can choose among multiple games.
